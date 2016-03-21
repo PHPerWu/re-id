@@ -1,11 +1,20 @@
-function features = colorFeatures( image )
+function features = colorFeatures(image, options )
+
 %COLORFEATURES generate color feature of images
 %   'RGB', 'YCbCr', 'HSV'
 %   Detailed explanation goes here
 
-RGB = 0;
-YCbCr = 0;
-HSV = 1;
+if isfield(options, 'RGB')
+    RGB = options.RGB;
+end
+
+if isfield(options, 'HSV')
+    HSV = options.HSV;
+end
+
+if isfield(options, 'YCbCr')
+    YCbCr = options.YCbCr;
+end
 
 stripes_num = 6;
 features = [];
@@ -14,6 +23,7 @@ bins = 16;
 %% color transfer
 % image = Retinex(image);
 
+%%
 [m, n, c] = size(image);
 horizontal_step = uint8(m/stripes_num);
 
