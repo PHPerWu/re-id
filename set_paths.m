@@ -8,5 +8,5 @@ addpath('feature/lbp_algorithms/lbp');
 addpath('utils');
 addpath('utils/CaiDeng');
 addpath('utils/eval');
-addpath('retinex');
+% addpath('retinex');
 addpath('yael/matlab/');

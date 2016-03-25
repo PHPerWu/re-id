@@ -90,7 +90,7 @@ if (nargin > 4) && (length(varargin{2}) == 1)
     end
     
     if(nargin >= 7)
-        mode=varargin{5};
+        mode=varargin{7};
     else
         mode='h';
     end
@@ -120,8 +120,6 @@ end
 
 % Determine the dimensions of the input image.
 [ysize xsize] = size(image);
-
-
 
 miny=min(spoints(:,1));
 maxy=max(spoints(:,1));
@@ -210,8 +208,11 @@ if (strcmp(mode,'h') || strcmp(mode,'hist') || strcmp(mode,'nh'))
             histogram = [histogram region_hist];
         end
     end
-     if (strcmp(mode,'nh'))
-        histogram=histogram/sum(histogram);
+    
+    if (strcmp(mode,'nh'))
+%         histogram=histogram/sum(histogram);
+        histogram = log(histogram+1); % log transform #sylvia
+        histogram=histogram/norm(histogram);
     end
 
     % Return with LBP histogram if mode equals 'hist'.

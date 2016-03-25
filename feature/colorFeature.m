@@ -25,7 +25,7 @@ bins = 16;
 
 %%
 [m, n, c] = size(image);
-horizontal_step = uint8(m/stripes_num);
+horizontal_step = floor(m/stripes_num);
 
 for i = 1:stripes_num
     if RGB
@@ -45,6 +45,8 @@ for i = 1:stripes_num
 
     if HSV 
         hsv_image = rgb2hsv(uint8(image));
+        hsv_image(:,:,3)= histeq(hsv_image(:,:,3));
+        
         HSV_feat = [ hist_16D(hsv_image((i*horizontal_step -horizontal_step +1):i*horizontal_step,:,1),bins) , ...
                hist_16D(hsv_image((i*horizontal_step -horizontal_step +1):i*horizontal_step,:,2), bins), ...
                hist_16D(hsv_image((i*horizontal_step -horizontal_step +1):i*horizontal_step,:,3), bins)];
