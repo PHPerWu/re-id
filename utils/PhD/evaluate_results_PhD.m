@@ -313,7 +313,7 @@
 % 
 % December 2011
 
-function output = evaluate_results_PhD(results,decision_mode,results1);
+function output = evaluate_results_PhD(results,decision_mode,results1)
 %% Init 
 output = [];
 
